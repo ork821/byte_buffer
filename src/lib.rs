@@ -57,6 +57,20 @@ impl Buffer {
         self.current_position = 0;
     }
 
+    pub fn move_offset_back(&mut self, count : usize) {
+        if self.current_position - count < 0 {
+            panic!("Offset less than 0");
+        }
+        self.current_position -= count;
+    }
+
+    pub fn move_offset_forward(&mut self, count : usize) {
+        if self.current_position + count > self.buffer.len() {
+            panic!("Offset less than buffer size");
+        }
+        self.current_position += count;
+    }
+
     pub fn decode_next_bytes(&mut self, count : usize) -> String {
         let slice = self.buffer[self.current_position..self.current_position + count]
             .to_vec();
