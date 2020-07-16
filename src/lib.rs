@@ -13,6 +13,10 @@ impl Buffer {
         }
     }
 
+    pub fn len(&self) -> usize {
+        self.buffer.len()
+    }
+
     pub fn get_u8(&mut self) -> u8 {
         let result  = self.buffer[self.current_position];
         self.current_position += 1;
