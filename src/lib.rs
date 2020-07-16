@@ -17,6 +17,10 @@ impl Buffer {
         self.buffer.len()
     }
 
+    pub fn offset(&self) -> usize { 
+        self.current_position 
+    }
+
     pub fn get_u8(&mut self) -> u8 {
         let result  = self.buffer[self.current_position];
         self.current_position += 1;
