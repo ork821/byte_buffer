@@ -1,4 +1,5 @@
 use std::convert::TryInto;
+use std::string::FromUtf8Error;
 
 pub struct Buffer {
     current_position : usize,
@@ -75,9 +76,9 @@ impl Buffer {
         self.current_position += count;
     }
 
-    pub fn decode_next_bytes(&mut self, count : usize) -> String {
+    pub fn decode_next_bytes(&mut self, count : usize) -> Result<String, FromUtf8Error> {
         let slice = self.buffer[self.current_position..self.current_position + count]
             .to_vec();
-        String::from_utf8(slice).unwrap()
+        String::from_utf8(slice)
     }
 }
